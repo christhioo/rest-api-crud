@@ -12,9 +12,11 @@ Routes
 ------
 Here is an overview of the routes for the API, what they will do, and HTTP Verb used to access it.
 
-|Route                         | HTTP Verb | Description              |
-|------------------------------| :-------: | -------------------------|
-|/api/:username/items          | GET       | List all the items       |
-|/api/:username/items          | POST      | Add a new item           |
-|/api/:username/items/:item_id | PUT       | Update an existing item  |
-|/api/:username/items/:item_id | DELETE    | Delete an item           |
+|Route                           | HTTP Verb | Description                                                      |
+|--------------------------------| :-------: | ---------------------------------------------------------------- |
+|/api/:username/items            | GET       | List all the items                                               |
+|/api/:username/items            | POST      | Add a new item                                                   |
+|/api/:username/items/:item_id   | PUT       | Update an existing item                                          |
+|/api/:username/items/:item_id   | DELETE    | Delete an item                                                   |
+|/api/:username/checkout         | GET       | Get the total cost                                               |
+|/api/:username/checkout/:coupon | GET       | Get the discount rate, total cost, and total cost after discount |
