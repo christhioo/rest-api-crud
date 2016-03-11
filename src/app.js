@@ -26,22 +26,28 @@ router.use(function(req, res, next) {
 
 //list all items
 router.get('/:username/items', function(req, res) {
-	db.get_all_items(req.params.username, function(items){
-		res.send(items);
+	db.get_all_items(req.params.username, function(items, err){
+		if (err) {
+			res.json({'message': err.code});
+		} else {
+			res.json(items);
+		}
 	});
 });
 
 //add a new item
 router.post('/:username/items', function(req, res) {
 	if (!req.body.item_name || !req.body.price || !req.body.quantity) {
-		res.send({"status": "error", "message": "missing a parameter"});
+		res.send({'status': 'error', 'message': 'missing a parameter'});
 	} else {
-		db.add_item(req, function(item){
-			if (item.affectedRows === 1){
-				res.send('Item has been successfully added!');
+		db.add_item(req, function(item, err){
+			if (err) {
+				res.json({'message': err.code});
+			} else if (item.affectedRows === 1){
+				res.json({'message': 'Item has been successfully added!'});
 				console.log('Item has been successfully added!');
 			} else {
-				res.send('Item has failed to be added');
+				res.json(item.message);
 				console.log('Item has failed to be added');
 			}
 		});
@@ -50,25 +56,32 @@ router.post('/:username/items', function(req, res) {
 
 //update the quantity of an existing item by item_id
 router.put('/:username/items/:item_id', function(req, res) {
-	db.update_item(req, function(item) {
-		if (item.changedRows === 1){
-			res.send('Item\'s quantity has been successfully updated');
+	db.update_item(req, function(item, err) {
+		if (err) {
+			res.json({'message': err.code});
+		} else if (item.affectedRows === 1){
+			res.json({'message': 'Item\'s quantity has been successfully updated'});
 			console.log('Item\'s quantity has been successfully updated');
 		} else {
-			res.send('Item\'s quantity has failed to be updated');
-			console.log('Item\'s quantity has failed to be updated');
+			res.json(item.message);
+			console.log(item.message);
 		}
 	});
 });
 
 //remove an existing item by item_id
 router.delete('/:username/items/:item_id', function(req, res) {
-	db.delete_item(req, function(item) {
-		if (item.affectedRows === 1){
-			res.send('Item has been successfully removed from database');
+	db.delete_item(req, function(item, err) {
+		if (err) {
+			res.json({'message': err.code});
+		} else if (item.affectedRows === 1){
+			res.json({'message': 'Item has been successfully removed from database'});
 			console.log('Item has been successfully removed from database');
+		} else if (item.affectedRows === 0) {
+			res.json({'message': 'Item is not found'});
+			console.log('Item is not found');
 		} else {
-			res.send('Item\'s removal has failed!');
+			res.json(item.message);
 			console.log('Item\'s removal has failed!');
 		}
 	});

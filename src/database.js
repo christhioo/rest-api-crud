@@ -50,7 +50,7 @@ var get_all_items = function(username, callback) {
 			connection.release();
 			
 			if (err){
-				throw callback(err);
+				return callback(500, err);
 			}			
 			callback(rows);
 		});
@@ -72,7 +72,7 @@ var add_item = function(req, callback) {
 			connection.release();
 			
 			if (err){
-				throw callback(err);
+				return callback(500, err);
 			}			
 			callback(rows);
 		});
@@ -90,7 +90,7 @@ var update_item = function(req, callback) {
 			connection.release();
 			
 			if (err){
-				throw callback(err);
+				return callback(500, err);
 			}			
 			callback(rows);
 		});
@@ -108,13 +108,14 @@ var delete_item = function(req, callback) {
 			connection.release();
 			
 			if (err){
-				throw callback(err);
+				return callback(500, err);
 			}			
 			callback(rows);
 		});
 	});
 };
 
+//export functions, so that it can be accessed by other files
 module.exports.get_all_items = get_all_items;
 module.exports.add_item = add_item;
 module.exports.update_item = update_item;
