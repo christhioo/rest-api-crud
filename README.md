@@ -54,6 +54,7 @@ Table name: items
 |1002     | Promised You A Miracle | 29.63 | 1        | chris        |
 
 Table name: coupon_codes
+
 | coupon_code | discount               | 
 |:-----------:|:----------------------:|
 |9d8zpACi     | 15%                    |
