@@ -44,3 +44,20 @@ How to Access
   * add "/api/chris/checkout" to the url
 6. To apply coupon code (e.g. HEywJL2D) provided the username (e.g. chris)
   * add "/api/chris/checkout/HEywJL2D" to the url
+
+Database Design
+---------------
+Table name: items
+
+| item_id | item_name              | price | quantity | user_account |
+|:-------:|:----------------------:|:-----:|:--------:|:------------:|
+|1002     | Promised You A Miracle | 29.63 | 1        | chris        |
+
+Table name: coupon_codes
+| coupon_code | discount               | 
+|:-----------:|:----------------------:|
+|9d8zpACi     | 15%                    |
+|9zqyRKhJ     | 5%                     |
+|EnfpMQNq     | 20%                    |
+|HEywJL2D     | 10%                    |
+|THoVdqwD     | 25%                    |
