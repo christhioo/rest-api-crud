@@ -112,7 +112,9 @@ router.get('/:username/checkout/:coupon', function(req, res) {
 			res.json({'message': err.code});
 		} else {
 			var after_discount = parseFloat(items["Total Cost"] * (1 - (items["Discount"]/100))).toFixed(2);
-			//add after_discount
+	
+			//add discount rate and total cost after discount
+			items["Discount"] = items["Discount"].toString() + "%";
 			items["Total Cost After Discount"] = after_discount;
 			
 			res.json(items);
