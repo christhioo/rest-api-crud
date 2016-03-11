@@ -2,6 +2,8 @@
 REST API with CRUD (Create, Read, Update, and Delete) functionalities for shopping cart: 
 * list, add, remove, and delete items
 
+To preview this API, please visit https://stormy-badlands-25301.herokuapp.com
+
 Dependencies
 ------------
 * Express (Node.js web application framework)
@@ -47,13 +49,13 @@ How to Access
 
 Database Design
 ---------------
-Table name: items
+__Table name: items__
 
 | item_id | item_name              | price | quantity | user_account |
 |:-------:|:----------------------:|:-----:|:--------:|:------------:|
 |1002     | Promised You A Miracle | 29.63 | 1        | chris        |
 
-Table name: coupon_codes
+__Table name: coupon_codes__
 
 | coupon_code | discount               | 
 |:-----------:|:----------------------:|
