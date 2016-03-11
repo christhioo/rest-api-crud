@@ -139,7 +139,10 @@ var get_discount = function(req, callback) {
 		connection.query(sql, [req.params.coupon], function(err, rows) {
 			if (err){
 				return callback(500, err);
+			} else if (typeof rows[0] === 'undefined') {
+				return callback({"message": "Coupon is not valid"});
 			}
+			
 			var discount = rows[0].discount;
 			
 			//get total cost
@@ -147,15 +150,18 @@ var get_discount = function(req, callback) {
 			connection.query(sql, [req.params.username], function(err, rows) {
 				// done with the connection. 
 				connection.release();
-				
+
 				if (err){
 					return callback(500, err);
+				} else if (null === rows[0]["Total Cost"]) {
+					return callback({"message": 'There is no such a username in the database'});
 				}
 				var total_cost = rows[0]["Total Cost"];
 				
 				//return discount and total cost
 				callback({"Discount": discount, "Total Cost": total_cost});
 			});
+			
 		});
 	});
 };

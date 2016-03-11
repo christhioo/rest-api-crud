@@ -97,6 +97,8 @@ router.get('/:username/checkout', function(req, res) {
 	db.get_total_cost(req, function(items, err) {
 		if (err) {
 			res.json({'message': err.code});
+		} else if (items[0]["Total Cost"] === null) {
+			res.json({'message': 'There is no such a username in the database'});
 		} else {
 			res.json(items);
 		}
@@ -110,6 +112,8 @@ router.get('/:username/checkout/:coupon', function(req, res) {
 	db.get_discount(req, function(items, err) {
 		if (err) {
 			res.json({'message': err.code});
+		} else if (items.message) {
+			res.json(items);
 		} else {
 			var after_discount = parseFloat(items["Total Cost"] * (1 - (items["Discount"]/100))).toFixed(2);
 	
@@ -120,7 +124,6 @@ router.get('/:username/checkout/:coupon', function(req, res) {
 			res.json(items);
 		}
 	});
-	
 });
 
 //all of routes will be prefixed with /api
