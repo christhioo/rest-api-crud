@@ -27,8 +27,9 @@ How to Access
 -------------
 1. To get all items provided the username (e.g. chris)
   * add "/api/chris/items" to the url
-2. To add a new item provided the username (e.g. chris)
+2. To add a new item
   * the following items are required:
+    * username (e.g. chris)  
     * item_name
     * price
     * quantity
