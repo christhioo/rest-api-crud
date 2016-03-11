@@ -28,12 +28,12 @@ How to Access
 1. To get all items provided the username (e.g. chris)
   * add "/api/chris/items" to the url
 2. To add a new item
+  * provides a username (e.g. chris)
   * the following items are required:
-    * username (e.g. chris)  
     * item_name
     * price
     * quantity
-  * then submit to "/api/chris/items" with the POST method
+  * then submit the items to "/api/chris/items" with the POST method
 3. To update the quantity of an existing item provided the username (e.g. chris)
   * the following item is required:
     * quantity
